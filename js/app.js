@@ -347,7 +347,7 @@ function createOrderConfirmationModal() {
 	const newOrderBtn = createElement("a");
 	newOrderBtn.classList.add("new-order-btn");
 	newOrderBtn.href = "#";
-	newOrderBtn.textContent = "Start new order";
+	newOrderBtn.textContent = "Start ne	 order";
 	newOrderBtn.addEventListener("click", function() {
 		location.reload();
 	});
@@ -356,5 +356,3 @@ function createOrderConfirmationModal() {
 	wrapper.appendChild(modal);
 	document.body.appendChild(wrapper);
 }
-
-
