@@ -245,18 +245,14 @@ function createBasketItem(name, quantity, price) {
 	removeIcon.alt = "";
 	removeIcon.classList.add("basket-product-remove-icon");
 
-	// Changed this part to be more like a beginner's code
 	removeIcon.addEventListener("click", function() {
-		// Reset the counter if it exists
 		if (pizzaQuantities[name]) {
 			if (pizzaQuantities[name].resetCounter) {
-				// Call the reset function
 				let resetFunc = pizzaQuantities[name].resetCounter;
 				resetFunc();
 			}
 		}
 
-		// Remove this pizza from our quantities object
 		delete pizzaQuantities[name];
 
 		let newTotal = 0;
@@ -361,21 +357,4 @@ function createOrderConfirmationModal() {
 	document.body.appendChild(wrapper);
 }
 
-// async function test() {
-// 	const res = await fetch("http://localhost:3000/auth", {
-// 		method: "POST",
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 		},
-// 		body: JSON.stringify({
-// 			firstName: "test",
-// 			lastName: "test",
-// 			email: "test@example.com",
-// 			password: "testtest",
-// 		}),
-// 	});
-// 	const data = await res.json();
-// 	console.log(data);
-// }
 
-// test();
