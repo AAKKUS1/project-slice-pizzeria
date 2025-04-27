@@ -36,14 +36,14 @@ function itemCreator(name, price, image) {
 function createPizzaItem(name, price, image) {
 	const pizzaItem = createElement("div");
 	pizzaItem.classList.add("pizza-item");
-	
+
 	const pizzaImg = createElement("img");
 	pizzaImg.src = image;
 	pizzaImg.classList.add("pizza-picture");
-	
+
 	const addToCart = createElement("span");
 	addToCart.classList.add("add-to-cart-btn");
-	
+
 	const cartIcon = createElement("img");
 	cartIcon.src = "../images/carbon_shopping-cart-plus.svg";
 
@@ -52,11 +52,11 @@ function createPizzaItem(name, price, image) {
 
 	const pizzaInfos = createElement("ul");
 	pizzaInfos.classList.add("pizza-infos");
-	
+
 	const nameLi = createElement("li");
 	nameLi.classList.add("pizza-name");
 	nameLi.textContent = name;
-	
+
 	const priceLi = createElement("li");
 	priceLi.classList.add("pizza-price");
 	priceLi.textContent = `${price}$`;
@@ -70,7 +70,7 @@ function createPizzaItem(name, price, image) {
 function setupAddToCartButton(addToCart, name, price) {
 	let currentItemCounter = 0;
 
-	addToCart.addEventListener("click", function() {
+	addToCart.addEventListener("click", function () {
 		if (currentItemCounter === 0) transformButtonToCounter(addToCart);
 	});
 
@@ -90,17 +90,17 @@ function setupAddToCartButton(addToCart, name, price) {
 
 		const btnMinus = createElement("div");
 		btnMinus.classList.add("amount-organizer");
-		
+
 		const btnPlus = createElement("div");
 		btnPlus.classList.add("amount-organizer");
-		
+
 		const counterText = createElement("p");
 		counterText.classList.add("item-counter");
 		counterText.textContent = currentItemCounter;
 
 		const minus = createElement("p");
 		minus.textContent = "-";
-		
+
 		const plus = createElement("p");
 		plus.textContent = "+";
 
@@ -109,7 +109,7 @@ function setupAddToCartButton(addToCart, name, price) {
 
 		button.append(btnMinus, counterText, btnPlus);
 
-		btnPlus.addEventListener("click", function() {
+		btnPlus.addEventListener("click", function () {
 			currentItemCounter++;
 			totalItemCount++;
 
@@ -118,7 +118,7 @@ function setupAddToCartButton(addToCart, name, price) {
 			}
 
 			pizzaQuantities[name].quantity++;
-			pizzaQuantities[name].resetCounter = function() {
+			pizzaQuantities[name].resetCounter = function () {
 				currentItemCounter = 0;
 				counterText.textContent = currentItemCounter;
 			};
@@ -133,7 +133,7 @@ function setupAddToCartButton(addToCart, name, price) {
 			}
 		});
 
-		btnMinus.addEventListener("click", function() {
+		btnMinus.addEventListener("click", function () {
 			if (currentItemCounter > 0) {
 				currentItemCounter--;
 				totalItemCount--;
@@ -164,17 +164,18 @@ function updateBasketDisplay() {
 
 		const totalOrderParagraph = createElement("p");
 		totalOrderParagraph.classList.add("total-order");
-		
+
 		const totalOrderTitleSpan = createElement("span");
 		totalOrderTitleSpan.classList.add("total-order-title");
 		totalOrderTitleSpan.textContent = "Order total";
-		
+
 		const totalOrderPriceSpan = createElement("span");
 		totalOrderPriceSpan.classList.add("total-order-price");
 
 		let totalAmount = 0;
 		for (const name in pizzaQuantities) {
-			totalAmount += pizzaQuantities[name].price * pizzaQuantities[name].quantity;
+			totalAmount +=
+				pizzaQuantities[name].price * pizzaQuantities[name].quantity;
 		}
 
 		totalOrderPriceSpan.textContent = `$${totalAmount}`;
@@ -183,7 +184,7 @@ function updateBasketDisplay() {
 		const deliveryInfo = createElement("p");
 		deliveryInfo.classList.add("delivery-info");
 		deliveryInfo.textContent = "This is a ";
-		
+
 		const carbonNeutral = createElement("span");
 		carbonNeutral.textContent = "carbon neutral";
 		deliveryInfo.appendChild(carbonNeutral);
@@ -218,7 +219,7 @@ function displayBasketItems() {
 function createBasketItem(name, quantity, price) {
 	const item = createElement("li");
 	item.classList.add("basket-product-item");
-	
+
 	const title = createElement("span");
 	title.classList.add("basket-product-item-name");
 	title.textContent = name;
@@ -245,7 +246,7 @@ function createBasketItem(name, quantity, price) {
 	removeIcon.alt = "";
 	removeIcon.classList.add("basket-product-remove-icon");
 
-	removeIcon.addEventListener("click", function() {
+	removeIcon.addEventListener("click", function () {
 		if (pizzaQuantities[name]) {
 			if (pizzaQuantities[name].resetCounter) {
 				let resetFunc = pizzaQuantities[name].resetCounter;
@@ -262,11 +263,10 @@ function createBasketItem(name, quantity, price) {
 		totalItemCount = newTotal;
 
 		updateCounter();
-		
+
 		updateBasketDisplay();
 
 		if (totalItemCount === 0) {
-
 			basket.classList.remove("baskets-with-pizza");
 			basket.classList.add("empty-basket");
 		}
@@ -279,22 +279,22 @@ function createBasketItem(name, quantity, price) {
 function createOrderConfirmationModal() {
 	const wrapper = createElement("div");
 	wrapper.classList.add("order-modal-wrapper");
-	
+
 	const modal = createElement("div");
 	modal.classList.add("order-modal");
-	
+
 	const checkImg = createElement("img");
 	checkImg.src = "../images/carbon_checkmark-outline.svg";
 	checkImg.alt = "";
-	
+
 	const title = createElement("p");
 	title.classList.add("order-modal-title");
 	title.textContent = "Order Confirmed";
-	
+
 	const subtitle = createElement("p");
 	subtitle.classList.add("order-modal-subtitle");
 	subtitle.textContent = "We hope you enjoy your food!";
-	
+
 	const orderList = createElement("ul");
 	orderList.classList.add("order-detail");
 
@@ -312,15 +312,15 @@ function createOrderConfirmationModal() {
 		const productName = createElement("span");
 		productName.classList.add("order-detail-product-name");
 		productName.textContent = name;
-		
+
 		const productQuantity = createElement("span");
 		productQuantity.classList.add("order-detail-product-quantity");
 		productQuantity.textContent = `${quantity}x`;
-		
+
 		const unitPrice = createElement("span");
 		unitPrice.classList.add("order-detail-product-unit-price");
 		unitPrice.textContent = `@ $${price}`;
-		
+
 		const productTotal = createElement("span");
 		productTotal.classList.add("order-detail-product-total-price");
 		productTotal.textContent = `$${price * quantity}`;
@@ -332,27 +332,53 @@ function createOrderConfirmationModal() {
 
 	const totalLine = createElement("li");
 	totalLine.classList.add("order-detail-total-price");
-	
+
 	const totalTitle = createElement("span");
 	totalTitle.classList.add("total-order-title");
 	totalTitle.textContent = "Order total";
-	
+
 	const totalAmount = createElement("span");
 	totalAmount.classList.add("total-order-price");
 	totalAmount.textContent = `$${totalPrice}`;
-	
+
 	totalLine.append(totalTitle, totalAmount);
 	orderList.appendChild(totalLine);
 
 	const newOrderBtn = createElement("a");
 	newOrderBtn.classList.add("new-order-btn");
 	newOrderBtn.href = "#";
-	newOrderBtn.textContent = "Start ne	 order";
-	newOrderBtn.addEventListener("click", function() {
+	newOrderBtn.textContent = "Start new order";
+	newOrderBtn.addEventListener("click", function () {
+		console.log(pizzaQuantities);
 		location.reload();
 	});
 
 	modal.append(checkImg, title, subtitle, orderList, newOrderBtn);
 	wrapper.appendChild(modal);
-	document.body.appendChild(wrapper);
+	document.body.appendChild(wrapper);	
+}
+
+async function postPizzas() {
+	const products = [];
+
+	for (const pizzaName in pizzaQuantities) {
+		const quantity = pizzaQuantities[pizzaName].quantity;
+
+		products.push({
+			name: pizzaName,
+			quantity: quantity,
+		});
+	}
+
+	const res = await fetch("http://51.38.232.174:3001/orders", {
+		method: "POST",
+		headers: {
+			Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", 
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ products }),
+	});
+
+	const data = await res.json();
+	console.log(data);
 }
